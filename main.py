@@ -76,6 +76,7 @@ def index():
                              cripto=dados_tratados["cripto"],
                              moeda=dados_tratados["moedas"],
                              timestamp=dados_tratados["timestamp"].strftime("%d/%m/%Y %H:%M:%S"))
+    
     return "Erro ao carregar dados", 500
 
 @app.route('/get_price')
@@ -88,4 +89,8 @@ def get_price():
     return jsonify({"error": "Falha ao obter preço"}), 500
 
 if __name__ == "__main__":
+    # Executar localmente
     app.run(debug=True)
+else:
+    # Para deploy serverless
+    app = app
