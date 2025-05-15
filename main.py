@@ -1,13 +1,18 @@
+import os
 import requests
 from flask import Flask, render_template, jsonify
 from sqlalchemy import create_engine, Column, Integer, String, DateTime
 from sqlalchemy.orm import declarative_base, sessionmaker
 from datetime import datetime
-import time
 
 app = Flask(__name__)
 
-DATABASE_URL = 'postgresql+psycopg2://dbname_ppk7_user:pass87YKbkn9wc8Ddt7e5fqHgihSzaGN3RiQword@dpg-d0ivndl6ubrc73cjqmhg-a.oregon-postgres.render.com/dbname_ppk7'
+# Configuração do banco de dados
+DATABASE_URL = os.getenv('DATABASE_URL', 'sqlite:///bitcoin.db')
+
+# Corrigir URL do PostgreSQL para o Render
+if DATABASE_URL and DATABASE_URL.startswith("postgres://"):
+    DATABASE_URL = DATABASE_URL.replace("postgres://", "postgresql://", 1)
 
 engine = create_engine(DATABASE_URL)
 Session = sessionmaker(bind=engine)
@@ -76,7 +81,6 @@ def index():
                              cripto=dados_tratados["cripto"],
                              moeda=dados_tratados["moedas"],
                              timestamp=dados_tratados["timestamp"].strftime("%d/%m/%Y %H:%M:%S"))
-    
     return "Erro ao carregar dados", 500
 
 @app.route('/get_price')
@@ -88,9 +92,17 @@ def get_price():
         return jsonify(dados_tratados)
     return jsonify({"error": "Falha ao obter preço"}), 500
 
+# Criar tabelas no banco de dados
+def init_db():
+    try:
+        Base.metadata.create_all(engine)
+        print("Banco de dados inicializado com sucesso!")
+    except Exception as e:
+        print(f"Erro ao inicializar o banco de dados: {e}")
+
+# Inicializar banco de dados quando o aplicativo iniciar
+init_db()
+
 if __name__ == "__main__":
-    # Executar localmente
-    app.run(debug=True)
-else:
-    # Para deploy serverless
-    app = app
+    port = int(os.getenv("PORT", 5000))
+    app.run(host='0.0.0.0', port=port)
