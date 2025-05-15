@@ -109,7 +109,5 @@ Este projeto está licenciado sob a Licença MIT - veja o arquivo [LICENSE](LICE
 
 ## Contato 📧
 
-Paulo - [@seutwitter](https://twitter.com/seutwitter)
-
-Link do Projeto: [https://github.com/seu-usuario/bitcoin-price-monitor](https://github.com/seu-usuario/bitcoin-price-monitor)
+Pedro Paino - [@_pedropaino__](https://www.instagram.com/_pedropaino__/)
 
