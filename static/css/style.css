@@ -1,0 +1,28 @@
+.card {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    border: none;
+    border-radius: 15px;
+}
+
+.card-header {
+    background-color: #f8f9fa;
+    border-bottom: none;
+    border-radius: 15px 15px 0 0 !important;
+}
+
+.price-container {
+    padding: 20px;
+    margin: 20px 0;
+    background-color: #f8f9fa;
+    border-radius: 10px;
+}
+
+#btc-price {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #1a73e8;
+}
+
+.text-muted {
+    font-size: 0.9rem;
+}
