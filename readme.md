@@ -94,6 +94,10 @@ bitcoin-price-monitor/
     "timestamp": "2025-05-15T10:30:00"
 }
 ```
+## 📷 Preview
+
+![image](https://github.com/user-attachments/assets/0d351fe6-a943-4601-b769-d0c1f6d9e906)
+
 
 ## Contribuindo 🤝
 
